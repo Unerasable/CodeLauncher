@@ -18,22 +18,50 @@ def get_application_get_url():
     data = check_valid_status_code(request)
     return data
 app_URL=get_application_get_url()
-checkAppVer = f"{app_URL['codelauncher']['version']}"
+checkAppVer = f"{app_URL['codelauncher']['verson']}"
 def check():
     if checkAppVer == app_Version:
         pass
     else:
         messagebox.showinfo("Code Launcher", "Code Launcher is out of date! Please update to the latest version.")
-    if os.path.exists("./assets/locations.json"):
-        pass
-    else:
-        
-    if os.path.exists("./assets/vscode.png"):
-        pass
-    else:
+        quit()
+    if os.path.exists("./assets") == False:
+        os.mkdir("./assets")
+    if os.path.exists("./assets/locations.json") == False:        
+        url = 'https://github.com/Unerasable/CodeLauncher/blob/main/assets/locations.json?raw=true'
+        r = requests.get(url, allow_redirects=True)
+        open('./assets/locations.json', 'wb').write(r.content)
 
+    if os.path.exists("./assets/vscode.png")==False:
+        url = 'https://github.com/Unerasable/CodeLauncher/blob/main/assets/vscode.png?raw=true'
+        r = requests.get(url, allow_redirects=True)
+        open('./assets/vscode.png', 'wb').write(r.content)
+    if os.path.exists("./assets/pycharm.png")==False:
+        url = 'https://github.com/Unerasable/CodeLauncher/blob/main/assets/pycharm.png?raw=true'
+        r = requests.get(url, allow_redirects=True)
+        open('./assets/pycharm.png', 'wb').write(r.content)
+    if os.path.exists("./assets/sublime.png")==False:
+        url = 'https://github.com/Unerasable/CodeLauncher/blob/main/assets/sublime.png?raw=true'
+        r = requests.get(url, allow_redirects=True)
+        open('./assets/sublime.png', 'wb').write(r.content)
+    if os.path.exists("./assets/github.png")==False:
+        url = 'https://github.com/Unerasable/CodeLauncher/blob/main/assets/github.png?raw=true'
+        r = requests.get(url, allow_redirects=True)
+        open('./assets/github.png', 'wb').write(r.content)
+    if os.path.exists("./assets/intellij.png")==False:
+        url = 'https://github.com/Unerasable/CodeLauncher/blob/main/assets/intellij.png?raw=true'
+        r = requests.get(url, allow_redirects=True)
+        open('./assets/intellij.png', 'wb').write(r.content)
+    if os.path.exists("./assets/webstorm.png")==False:
+        url = 'https://github.com/Unerasable/CodeLauncher/blob/main/assets/webstorm.png?raw=true'
+        r = requests.get(url, allow_redirects=True)
+        open('./assets/webstorm.png', 'wb').write(r.content)
+    if os.path.exists("./assets/eclipse.png")==False:
+        url = 'https://github.com/Unerasable/CodeLauncher/blob/main/assets/eclipse.png?raw=true'
+        r = requests.get(url, allow_redirects=True)
+        open('./assets/eclipse.png', 'wb').write(r.content)
 
-
+check()
 
 
 with open("./assets/locations.json", "r") as f:
@@ -76,9 +104,9 @@ def openEclipse():
 
 
 root = tk.Tk()
-root.geometry("300x300")
+root.geometry("820x600")
 root.title("Code Launcher")
-root.resizable(True, True)
+root.resizable(False, False)
 root.configure(bg="#36393f")
 title=tk.Label(root, text="Code Launcher", bg="#36393f", fg="white", font=("Helvetica", 20)).pack()
 vscodeIcon = PhotoImage(file='./assets/vscode.png')
