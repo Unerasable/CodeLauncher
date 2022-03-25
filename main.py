@@ -60,6 +60,10 @@ def check():
         url = 'https://github.com/Unerasable/CodeLauncher/blob/main/assets/eclipse.png?raw=true'
         r = requests.get(url, allow_redirects=True)
         open('./assets/eclipse.png', 'wb').write(r.content)
+    if os.path.exists("./assets/logo.ico")==False:
+        url = 'https://github.com/Unerasable/CodeLauncher/blob/main/assets/logo.ico?raw=true'
+        r = requests.get(url, allow_redirects=True)
+        open('./assets/logo.ico', 'wb').write(r.content)
 
 check()
 
@@ -108,6 +112,7 @@ root.geometry("820x600")
 root.title("Code Launcher")
 root.resizable(False, False)
 root.configure(bg="#36393f")
+root.iconbitmap("./assets/logo.ico")
 title=tk.Label(root, text="Code Launcher", bg="#36393f", fg="white", font=("Helvetica", 20)).pack()
 vscodeIcon = PhotoImage(file='./assets/vscode.png')
 vscodeBtn = tk.Button(root, image=vscodeIcon, bg="#36393f", fg="white", command=lambda: openVSCode()).pack()
